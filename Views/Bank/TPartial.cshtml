@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model UserTransact
+    <form action="/transaction" method="post">
+        <div class="form-group">
+            <span style="color: red;" asp-validation-for="Amount"></span>
+            <label asp-for="Amount">Amount: </label>
+            <input asp-for="Amount">
+            <input type="hidden" value="@Model.UserId" name="UserId">
+            <input type="hidden" value="@Model.Transactions" name="Transactions">
+        </div>
+        <button class="btn btn-primary">Withdaw/Deposit</button>
+    </form>
+</body>
+</html>

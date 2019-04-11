@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model UserTransact
+    <h1>Welcome @Model.User.FirstName @Model.User.LastName</h1>
+    <p>Balance: @Model.User.Transactions.Sum(transaction => transaction.Amount)</p>
+    <partial name="TPartial" model="@Model"/>
+    <a style="float: right;" href="/logout">Logout</a>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var transaction in Model.User.Transactions.OrderByDescending(d => d.CreatedAt))
+            {
+                <tr>
+                    <td>$@transaction.Amount</td>
+                    <td>@transaction.CreatedAt</td>
+                </tr>
+            }
+       
+    </tbody>
+    </table>
+</body>
+</html>
